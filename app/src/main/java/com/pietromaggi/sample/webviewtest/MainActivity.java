@@ -1,6 +1,7 @@
 package com.pietromaggi.sample.webviewtest;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -46,7 +47,9 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setAllowContentAccess(true);
         webSettings.setAppCacheEnabled(true);
         myWebView.addJavascriptInterface(mWebAppInterface, "JSInterface");
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true);
+        }
         mEdtUrlAddress.setText(DEFAULT_URL);
         mBtnLoad.setOnClickListener(new View.OnClickListener() {
             @Override
